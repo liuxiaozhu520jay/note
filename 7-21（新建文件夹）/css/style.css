@@ -1,0 +1,55 @@
+.box{
+	width: 658px;
+	height: 511px;
+	background: url(../images/bg.png) no-repeat;
+	margin: 50px auto;
+	position: relative;
+	padding-top: 6px;
+}
+.mu{
+	width: 587px;
+	height: 158px;
+	background: url(../images/mu.png) no-repeat;
+	position: absolute;
+	left: 46px;
+	top: 0;
+	z-index: 999;
+}
+.screen{
+	width: 380px;
+	height: 290px;
+	position: absolute;
+	left: 143px;
+	top: 6px;
+	overflow: hidden;
+}
+.list{
+	width: 600%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.list li{
+	float: left;
+}
+#img_des{
+	width: 363px;
+	height: 60px;
+	background: rgba(0,0,0,0.5);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding-left: 17px;
+	color: #fff;
+}
+.title{
+	height: 17px;
+	font-size: 17px;
+	margin-top: 15px;
+	margin-bottom: 6px;
+	font-weight: bold;
+}
+.des{
+	height: 14px;
+	font-size: 14px;
+}

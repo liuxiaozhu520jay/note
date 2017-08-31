@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/reset.css"/>
+		<style>
+			.wrap{
+				width: 700px;
+				height: 500px;
+				background: url(images/bg.png) no-repeat;
+				margin: 20px auto;
+				position: relative;
+			}
+			#new{
+				width: 116px;
+				height: 31px;
+				border: 2px solid #df9e9e;
+				border-radius: 10px;
+				color: #fff;
+				position: absolute;
+				left: 289px;
+				bottom: 102px;
+			}
+			#delete{
+				width: 116px;
+				height: 31px;
+				border: 2px solid #bf5e61;
+				border-radius: 10px;
+				background: #f2ddde;
+				color: #000;
+				position: absolute;
+				left: 289px;
+				bottom: 44px;
+			}
+			.box{
+				width: 450px;
+				height: 120px;
+				position: absolute;
+				left: 150px;
+				top: 200px;
+			}
+			.folder{
+				width: 116px;
+				height: 116px;
+				/*background: rgba(0,0,0,0.3);*/
+				/*border: 2px solid #b3a4c5 ;*/
+				border-radius: 10px;
+				margin-right: 18px;
+				position: relative;
+			}
+			.folder i{
+				display: block;
+				width: 70px;
+				height: 58px;
+				background: url(images/folder.png) no-repeat;
+				margin: 25px auto;
+				margin-bottom: 10px;
+			}
+			.folder span{
+				color: #fff;
+				font-size: 14px;
+				display: block;
+				text-align: center;
+			}
+			.check{
+				width: 12px;
+				height: 12px;
+				border:  2px solid #fff;
+				position: absolute;
+				left: 4px;
+				top: 4px;;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box clearfix">
+				<!--<div class="folder fl">
+					<input type="checkbox" class="check" />
+					<i></i>
+					<span>新建文件夹</span>
+				</div>-->
+			</div>
+			<input type="button" value="新建文件夹" id="new"/>
+			<input type="button" value="删除文件夹" id="delete"/>
+		</div>
+		<script src = "utils.js"></script>
+		<script>
+			var newBtn = $('#new');//新建文件夹
+			var deleteBtn = $('#delete');//删除文件夹
+			var box = $('.box')[0];
+			
+			//新建文件夹点击事件
+			newBtn.onclick = function(){
+				//动态生成
+				var folders = $('.folder');
+				if(folders.length>=3){
+					return;
+				};
+				//添加一个子元素
+				var folder = document.createElement("div");
+				folder.setAttribute("class","folder fl");
+				folder.innerHTML = '<input type="checkbox" class="check" /><i></i><span>新建文件夹</span>';
+				box.appendChild(folder);
+				
+				
+				var check = $('.check',folder)[0];//对号框
+				check.isChecked = false;//对号框默认为未未选中状态
+				check.parendFolder = folder;
+				//对号框点击事件
+				check.onclick = function(){
+					if(this.isChecked == true){//如果他的状态是选中的
+						this.isChecked = false;//就要让他变成未选中的
+					}else{
+						this.isChecked = true;
+					}
+				};
+				
+				folder.innercheck = check;//自定义
+				//移入
+				folder.onmouseover = function(){
+					this.style.background = "rgba(0,0,0,0.3)";
+					this.style.border = "2px solid #b3a4c5";
+					this.innercheck.style.display ="block";
+				};
+				//移出
+				folder.onmouseout = function(){
+					if(this.innercheck.isChecked){//如果是选中状态
+					}else{//如果是未选中状态
+						this.style.background = "";
+						this.style.border = "";
+						this.innercheck.style.display ="none";
+					}
+				};
+			};
+			//删除文件夹点击事件
+			deleteBtn.onclick = function(){
+				Array.from($('.folder')).forEach(function(item){
+					
+					if(item.innercheck.isChecked) {
+						item.remove();
+					}
+					
+				});
+			}
+			
+		</script>
+	</body>
+</html>
